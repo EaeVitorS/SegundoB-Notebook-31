@@ -1,0 +1,50 @@
+import random
+
+print("Bem-vindo ao jogo 'Pedra, Papel, Tesoura, Lagarto, Spock")
+print("Regras:")
+print("1. Pedra esmaga Tesoura")
+print("2. Tesoura corta Papel")
+print("3. Papel cobre Pedra")
+print("4. Pedra esmaga Lagarto")
+print("5. Lagarto envenena Spock")
+print("6. Spock esmaga Tesoura")
+print("7. Tesoura decapita Lagarto")
+print("8. Lagarto come Papel")
+print("9. Papel refuta Spock")
+print("10. Spock vaporiza Pedra")
+
+def jogo():
+    alternativas = ["pedra", "papel", "tesoura", "lagarto", "spock"]
+
+    print("Escolha: pedra, papel, tesoura, lagarto ou spock")
+    escolha_jogador = input().lower()
+
+    if escolha_jogador not in alternativas:
+        print("Escolha inválida. Tente novamente.")
+        return jogo()
+
+    escolha_computador = random.choice(alternativas)
+
+    print(f"Você escolheu {escolha_jogador}")
+    print(f"Computador escolheu {escolha_computador}")
+
+    if escolha_jogador == escolha_computador:
+        print("Empate!")
+    elif (
+        (escolha_jogador == "pedra" and escolha_computador in ["tesoura", "lagarto"]) or
+        (escolha_jogador == "papel" and escolha_computador in ["pedra", "spock"]) or
+        (escolha_jogador == "tesoura" and escolha_computador in ["papel", "lagarto"]) or
+        (escolha_jogador == "lagarto" and escolha_computador in ["spock", "papel"]) or
+        (escolha_jogador == "spock" and escolha_computador in ["tesoura", "pedra"])
+    ):
+        print("Você venceu!")
+    else:
+        print("Você perdeu!")
+
+    print("Quer jogar novamente? (sim/não)")
+    return input().lower() == 'sim'
+
+while jogo():
+    pass
+
+print("Vida Longa e próspera, Obrigado por Jogar")
